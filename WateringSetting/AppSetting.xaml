@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.AppSetting"
+             Title="{Static local:Language.aPP_setting}" x:Name="page"
+             xmlns:local="clr-namespace:WateringSetting " >
+    <VerticalStackLayout>
+        <local:EnhancedButton x:Name="cleanCache" Text="{Static local:Language.clean_cache}" Clicked="Button_Clicked"/>
+        <local:EnhancedButton Text="Language" Clicked="EnhancedButton_Clicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>

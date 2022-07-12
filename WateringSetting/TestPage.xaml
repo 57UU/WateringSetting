@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.TestPage"
+             Title="TestPage" xmlns:local="clr-namespace:WateringSetting ">
+    <VerticalStackLayout>
+        <local:EnhancedButton Text="Get Language" Clicked="Button_Clicked_1"/>
+        <local:EnhancedButton Text="Toast" Clicked="EnhancedButton_Clicked"/>
+        <local:EnhancedButton Text="Clear Data" Clicked="EnhancedButton_Clicked_1"/>
+        <local:EnhancedButton Text="Force GC" Clicked="GC_Btn"/>
+    </VerticalStackLayout>
+</ContentPage>

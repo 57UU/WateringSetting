@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="WateringSetting.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:WateringSetting"
+    Shell.FlyoutBehavior="Flyout" Shell.NavBarIsVisible="True" Shell.TabBarIsVisible="False"
+    x:Name="page">
+
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" BindingContext="{Reference page}">
+        <ShellContent x:Name="deviceConnected"
+        Title="{Static local:Language.devices_Connected}"
+        ContentTemplate="{DataTemplate local:Devices}"
+        />
+        <ShellContent x:Name="appSetting"
+        Title="{Static local:Language.aPP_setting}"
+        ContentTemplate="{DataTemplate local:AppSetting}"
+        />
+        <ShellContent
+        Title="Test"
+        ContentTemplate="{DataTemplate local:TestPage}"
+        />
+        <ShellContent x:Name="about"
+        Title="{Static local:Language.about}"
+        ContentTemplate="{DataTemplate local:About}"
+        />
+
+    </FlyoutItem>
+
+
+</Shell>

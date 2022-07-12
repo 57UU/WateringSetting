@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.PopupContent.ParameterSetting" Title="{Static local:Language.parameter_Config}"
+             xmlns:local="clr-namespace:WateringSetting ">
+    <ContentPage.Resources>
+        
+    </ContentPage.Resources>
+			 
+    <ScrollView>
+        <VerticalStackLayout Spacing="10" Margin="10">
+            <Label x:Name="horizon_label" Text="Horizon Rotation:"  HorizontalTextAlignment="Start" />
+            <Slider x:Name="horizon" Maximum="360" ValueChanged="horizon_ValueChanged" />
+            <Label x:Name="vertical_label" Text="Vertical Rotation:"  HorizontalTextAlignment="Start"/>
+            <Slider x:Name="vertical" Maximum="360" ValueChanged="vertical_ValueChanged"/>
+            <Label  x:Name="pressure_label" Text="Pressure:"  HorizontalTextAlignment="Start"/>
+            <Slider x:Name="pressure" Maximum="100" ValueChanged="pressure_ValueChanged"/>
+            <HorizontalStackLayout>
+                <Label Text="Use senser to adjust data" x:Name="use_senser"/>
+                <Switch x:Name="isUseSenser" IsToggled="true" Toggled="isUseSenser_Toggled"/>
+            </HorizontalStackLayout>
+            <VerticalStackLayout BindingContext="{Reference isUseSenser}" IsVisible="{Binding IsToggled}">
+                <Label Text="use senser to adjust values"/>
+                <Label x:Name="detail"/>
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+ 
+</ContentPage>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.PopupContent.SingleDeviceSetting"
+             Title="{Static local:Language.device_setting}" xmlns:local="clr-namespace:WateringSetting ">
+    <VerticalStackLayout>
+        <local:EnhancedButton Clicked="EnhancedButton_Clicked" Text="{Static local:Language.parameter_Config}"/>
+        <local:EnhancedButton Clicked="EnhancedButton_Clicked_1" Text="{Static local:Language.change_name}"/>
+        <local:EnhancedButton Text="{Static local:Language.delete}"  TextColor="Red" BackgroundColor="AliceBlue" Clicked="DeleteThis" FontAttributes="Bold"/>
+    </VerticalStackLayout>
+</ContentPage>

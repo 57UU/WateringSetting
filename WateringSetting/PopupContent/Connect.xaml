@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.PopupContent.Connect"
+             Title="{Static local:Language.connect}" xmlns:local="clr-namespace:WateringSetting ">
+    <VerticalStackLayout>
+        <HorizontalStackLayout >
+            <Label x:Name="autoScan" Text="{Static local:Language.auto_scan}"/>
+            <Label HorizontalOptions="End"  Text=" >>>"/>
+            <ActivityIndicator x:Name="activityProgress" IsRunning="True"  HorizontalOptions="End"/>
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout x:Name="scannedDevice" Margin="0">
+            
+        </VerticalStackLayout>
+
+
+        <HorizontalStackLayout>
+            <Label x:Name="advOpt" Text="{Static local:Language.advanced_option}"/>
+            <Switch x:Name="isAdvanced" IsToggled="False" />
+        </HorizontalStackLayout>
+
+        <VerticalStackLayout x:Name="advancedOptions" Margin="0" IsVisible="{Binding Path=IsToggled,Mode=TwoWay}" BindingContext="{x:Reference Name=isAdvanced}">
+            <Entry x:Name="ip"  Placeholder="{Static local:Language.iP_Address}" />
+            <Entry x:Name="port"  Placeholder="{Static local:Language.port}" />
+            <local:EnhancedButton x:Name="connect" Text="{Static local:Language.connect}" Clicked="connect_Clicked"/>
+        </VerticalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>

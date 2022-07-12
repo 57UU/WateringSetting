@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.PopupContent.ChooseLanguage"
+             Title="ChooseLanguage" xmlns:local="clr-namespace:WateringSetting ">
+    <ScrollView>
+        
+        <VerticalStackLayout x:Name="layout">
+            <Frame BackgroundColor="DodgerBlue" CornerRadius="40">
+                <Label HorizontalTextAlignment="Center" Text="{Static local:Language.changes_need_restarting_to_apply}" TextColor="White"/>
+            </Frame>
+            
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
