@@ -6,6 +6,7 @@ namespace WateringSetting.PopupContent;
 public partial class ParameterSetting : ContentPage
 {
 	private SmartDeviceInfo info;
+    private ValueSetter horizon, vertical, pressure;
 	public ParameterSetting(SmartDeviceInfo deviceInfo)
 	{
 		InitializeComponent();
@@ -14,14 +15,23 @@ public partial class ParameterSetting : ContentPage
 
         Title = Language.parameter_Config;
 		use_senser.Text = Language.use_senser;
-        hor_routateText = Language.horizon + " " + Language.rotate + ":";
-		vtcText = Language.vertical + " " + Language.rotate + ":";
-		pressureText = Language.pressure + ":";
+        var hor_routateText = Language.horizon + " " + Language.rotate;
+		var vtcText = Language.vertical + " " + Language.rotate;
+		var pressureText = Language.pressure;
 
 
-        horizon_label.Text = hor_routateText;
-        vertical_label.Text = vtcText;
-        pressure_label.Text = pressureText;
+        horizon = new ValueSetter(hor_routateText, info.horizonRotation) { max = max1 };
+        vertical = new ValueSetter(vtcText, info.verticalRotation) { max = max1 };
+        pressure = new ValueSetter(pressureText, info.pressure) { max = max2 };
+
+        horizon.ValueChanged += (o,e) => info.horizonRotation= (float)e.NewValue;
+        vertical.ValueChanged += (o, e) => info.verticalRotation= (float)e.NewValue;
+        pressure.ValueChanged += (o, e) => info.pressure= (float)e.NewValue ;
+
+
+        layout.Add(horizon);
+        layout.Add(vertical);
+        layout.Add(pressure);
 
 
         if (orientation.IsSupported)
@@ -34,18 +44,14 @@ public partial class ParameterSetting : ContentPage
                 {
                     orientation.Stop();
                 }
-                catch (Exception ignored)
-                {
-
-                }
+                catch
+                {   }
                 try
                 {
                     orientation.ReadingChanged -= Orientation_ReadingChanged;
                 }
-                catch (Exception ignored)
-                {
-
-                }
+                catch
+                {     }
             };
         }
         else
@@ -57,39 +63,24 @@ public partial class ParameterSetting : ContentPage
 
         
     }
-	private string hor_routateText;
-    private void horizon_ValueChanged(object sender, ValueChangedEventArgs e)
-	{
-		horizon_label.Text = hor_routateText + e.NewValue;
-    }
-	private string vtcText ;
-	private void vertical_ValueChanged(object sender, ValueChangedEventArgs e)
-	{
-		vertical_label.Text= vtcText+e.NewValue;
-
-    }
-	private string pressureText;
-	private void pressure_ValueChanged(object sender, ValueChangedEventArgs e)
-	{
-		pressure_label.Text= pressureText + e.NewValue;
-
-    }
-
-
     IOrientationSensor orientation = OrientationSensor.Default;
-    int halfMAx1 = 360;
-    int halfMax2 = 50;
+    int max1 = 360;
+    int max2 = 100;
+
+    private void EnhancedButton_Clicked(object sender, EventArgs e)
+    {
+        isUseSenser.IsToggled = false;
+    }
+
     private void Orientation_ReadingChanged(object sender, OrientationSensorChangedEventArgs e)
     {
         // Update UI Label with orientation state
         detail.Text = $"Orientation: {e.Reading}";
-        float x, y, z;
-        (x,y,z)= Utilities.transformQuaternion(e.Reading.Orientation);
-        horizon.Value = (x/2 + 0.5) * halfMAx1;
-        vertical.Value = (y / 2 + 0.5) * halfMAx1;
-        pressure.Value =( z / 2 + 0.5) * halfMax2;
-
-
+        float a, b;
+        (a,b,_)= Utilities.transformQuaternion(e.Reading.Orientation);
+        //horizon.Value = (x/2 + 0.5) * max1;
+        vertical.Value = (a / 2 + 0.5) * max1;
+        pressure.Value =( b / 2 + 0.5) * max2;
     }
 
 
@@ -106,14 +97,14 @@ public partial class ParameterSetting : ContentPage
             catch{}
             orientation.ReadingChanged += Orientation_ReadingChanged;
             
-            pressure.IsEnabled=vertical.IsEnabled= horizon.IsEnabled = false;
+            pressure.IsEnabled=vertical.IsEnabled= false;
 
         }
         else
         {
             // Turn off compass
             try {
-                pressure.IsEnabled = vertical.IsEnabled = horizon.IsEnabled = true;
+                pressure.IsEnabled = vertical.IsEnabled =  true;
                 orientation.Stop();
                 orientation.ReadingChanged -= Orientation_ReadingChanged;
             }catch { 
@@ -123,5 +114,7 @@ public partial class ParameterSetting : ContentPage
             
         }
     }
+
+
 }
 

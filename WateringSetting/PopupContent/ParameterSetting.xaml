@@ -8,18 +8,21 @@
     </ContentPage.Resources>
 			 
     <ScrollView>
-        <VerticalStackLayout Spacing="10" Margin="10">
-            <Label x:Name="horizon_label" Text="Horizon Rotation:"  HorizontalTextAlignment="Start" />
-            <Slider x:Name="horizon" Maximum="360" ValueChanged="horizon_ValueChanged" />
-            <Label x:Name="vertical_label" Text="Vertical Rotation:"  HorizontalTextAlignment="Start"/>
-            <Slider x:Name="vertical" Maximum="360" ValueChanged="vertical_ValueChanged"/>
-            <Label  x:Name="pressure_label" Text="Pressure:"  HorizontalTextAlignment="Start"/>
-            <Slider x:Name="pressure" Maximum="100" ValueChanged="pressure_ValueChanged"/>
+        <VerticalStackLayout Spacing="10" Margin="10" >
+            <VerticalStackLayout x:Name="layout" Margin="0" >
+                
+            </VerticalStackLayout>
+
+
+
             <HorizontalStackLayout>
                 <Label Text="Use senser to adjust data" x:Name="use_senser"/>
                 <Switch x:Name="isUseSenser" IsToggled="true" Toggled="isUseSenser_Toggled"/>
             </HorizontalStackLayout>
+
             <VerticalStackLayout BindingContext="{Reference isUseSenser}" IsVisible="{Binding IsToggled}">
+                <Button Text="{Static local:Language.press_this_button_to_keep_the_status}"
+                                  Clicked="EnhancedButton_Clicked"/>
                 <Label Text="use senser to adjust values"/>
                 <Label x:Name="detail"/>
             </VerticalStackLayout>

@@ -7,7 +7,15 @@ public partial class SingleDevice : ContentView
 		InitializeComponent();
 		deviceInfo = info;
 		title.Text = deviceInfo.name;
+		this.Loaded += SingleDevice_Loaded;
 	}
+
+	private async void SingleDevice_Loaded(object? sender, EventArgs e)
+	{
+		await Task.Delay(50);
+        this.HeightRequest = Height;
+    }
+
 	public readonly SmartDeviceInfo deviceInfo;
 
 	private void EnhancedButton_Clicked(object sender, EventArgs e)

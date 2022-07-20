@@ -3,7 +3,7 @@ namespace WateringSetting.PopupContent;
 public partial class SingleDeviceSetting : ContentPage
 {
 	private SmartDeviceInfo deviceInfo;
-	public SingleDeviceSetting(SmartDeviceInfo smartDeviceInfo)
+	public SingleDeviceSetting(in SmartDeviceInfo smartDeviceInfo)
 	{
 		InitializeComponent();
 		deviceInfo= smartDeviceInfo;

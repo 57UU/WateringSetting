@@ -40,11 +40,25 @@ public partial class Devices : ContentPage
     }
 	private void forceRefreshList()
 	{
+		bool isUseSearchBar = !(searchBar.Text == "" ||searchBar.Text==null);
         layout.Clear();
-        foreach (var i in Assets.devices)
-        {
-            layout.Add(i.Value);
+		if (isUseSearchBar)
+		{
+            foreach (var i in Assets.devices)
+            {
+				
+                if (i.Key.Contains(searchBar.Text))
+                    layout.Add(i.Value);
+            }
+		}
+		else
+		{
+            foreach (var i in Assets.devices)
+            {
+                    layout.Add(i.Value);
+            }
         }
+
         Utilities.writeDevices();
     }
 
@@ -99,5 +113,21 @@ public partial class Devices : ContentPage
 
 
 
+    }
+	Task task;
+	private async Task timer()
+	{
+		if(task != null)
+		{
+			task.Dispose();
+		}
+			
+		await Task.Delay(700);
+		forceRefreshList();
+
+	}
+	private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+	{
+		task= timer();
     }
 }

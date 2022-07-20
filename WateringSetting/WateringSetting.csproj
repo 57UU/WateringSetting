@@ -135,6 +135,9 @@
 	  <MauiXaml Update="Controls\SingleDevice.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Controls\ValueSetter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="PopupContent\ChooseLanguage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

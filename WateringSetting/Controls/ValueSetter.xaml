@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WateringSetting.ValueSetter">
+    <Grid BindingContext="{Reference slider}">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition/>
+            <ColumnDefinition  />
+        </Grid.ColumnDefinitions>
+        <Label x:Name="label" Text="Loading" HorizontalOptions="Start" Grid.Column="0" />
+        <Stepper x:Name="stepper" Grid.Column="2" Value="{Binding Value}" Maximum="{Binding Maximum}"/>
+        <Slider x:FieldModifier="public" x:Name="slider" Grid.Row="1" Grid.ColumnSpan="3" ValueChanged="slider_ValueChanged" />
+
+    </Grid>
+</ContentView>

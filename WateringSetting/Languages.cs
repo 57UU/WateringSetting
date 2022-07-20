@@ -6,19 +6,24 @@ namespace WateringSetting;
 public static  class Language
 {
     public static string languageType = "None";
-    //due to reflection used in English, all varible must be"a_b_c" struct
+
+    //due to reflection used in English, all variable must be"a_b_c" struct
+    [System.Diagnostics.CodeAnalysis.AllowNull]
     public static string devices_Connected, back, next, parameter_Config, iP_Address,pressure,port,
         about,setting,clean_cache,aPP_setting,advanced_option,connect,auto_scan,use_senser,rotate,horizon,vertical,
         successful,faild,cache_cleaned,great,changes_need_restarting_to_apply,it_seems_you_havenot_connect_device_yet,
         device_setting,new_name,input,change_name,name,status, operation,delete,confirm,following_devices_will_be_deleted,
-        unsupported;
+        unsupported,press_this_button_to_keep_the_status;
+
+    
     static Language()
     {
         english();
         string setLanguage = Utilities.readValue(Utilities.LanguageKey, "defaultLanguage");
-        Utilities.tryDo(() =>  typeof(Language).GetMethod(setLanguage).Invoke(null, null));
+        Utilities.tryDo(() => typeof(Language).GetMethod(setLanguage).Invoke(null, null));
            
     }
+    
     public static void defaultLanguage()
     {
         CultureInfo cultureInfo = CultureInfo.CurrentCulture;
@@ -71,6 +76,7 @@ public static  class Language
         languageType = "Chinese";it_seems_you_havenot_connect_device_yet = "似乎你还没有连接过设备";device_setting = "设备设置";
         new_name = "新名字";input = "输入";change_name = "更改名字";name = "名字";operation = "操作"; status = "状态";delete = "删除";
         confirm="三思而后行";following_devices_will_be_deleted = "以下设备将被删除";unsupported = "不受支持";
+        press_this_button_to_keep_the_status = "按下此按钮以保持此状态";
     }
     public static void japanese()
     {

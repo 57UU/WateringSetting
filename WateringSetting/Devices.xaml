@@ -15,10 +15,12 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
+                    <RowDefinition Height="40"/>
                 </Grid.RowDefinitions>
                 <local:EnhancedButton Text="+" Clicked="addDeviceBtn" Grid.Column="0" FontSize="20"/>
                 <local:EnhancedButton Text="⟳" Clicked="EnhancedButton_Clicked" Grid.Column="1" FontSize="20"/>
                 <Button Text="🗑" Grid.Column="2" FontSize="20"  BackgroundColor="Red" Clicked="Delete_Clicked_1"/>
+                <SearchBar x:Name="searchBar" Grid.Row="1" Grid.ColumnSpan="3" FontSize="20" TextChanged="SearchBar_TextChanged"/>
             </Grid>
             <Grid Margin="20,0,20,0">
                 <Grid.RowDefinitions>

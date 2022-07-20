@@ -61,7 +61,7 @@ internal static class Utilities
         {
             start();
         }
-        catch (Exception e)
+        catch
         {
             popupMessage(errorMessage);
         }
@@ -84,10 +84,10 @@ internal static class Utilities
             var devicesDict = JsonSerializer.Deserialize<Dictionary<string, SmartDeviceInfo>>(value);
             if (devicesDict != null)
             {
-                Dictionary<string, SingleDevice> GUIDict = new();
+                Dictionary<string, SingleDevice> GUIDict = Assets.devices;
                 foreach (var i in devicesDict)
                 {
-                    GUIDict.Add(i.Key, new SingleDevice(i.Value));
+                    Assets.addDevice((i.Value));
                 }
                 devicesDict = null;
 

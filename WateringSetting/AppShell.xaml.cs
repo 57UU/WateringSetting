@@ -23,10 +23,8 @@ public partial class AppShell : Shell
                 FlyoutBehavior = FlyoutBehavior.Locked;
             }
                
-        }catch(Exception ignored)
-        {
-
-        }
+        }catch
+        {     }
        
 
 
