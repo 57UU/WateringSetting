@@ -75,23 +75,23 @@ internal static class Utilities
         var toast = Toast.Make(text, duration, fontSize);
         toast.Show(cancellationTokenSource.Token);
     }
+    public readonly static  JsonSerializerOptions jsonOption = new JsonSerializerOptions() { IncludeFields = false };
     public async static void readDevices()
     {
         try
         {
             string value = await Utilities.readTextFile(Utilities.DevicesFileName);
 
-            var devicesDict = JsonSerializer.Deserialize<Dictionary<string, SmartDeviceInfo>>(value);
+            var devicesDict = JsonSerializer.Deserialize<LinkedList<SmartDeviceInfo>>(value);
             if (devicesDict != null)
             {
                 Dictionary<string, SingleDevice> GUIDict = Assets.devices;
                 foreach (var i in devicesDict)
                 {
-                    Assets.addDevice((i.Value));
+                    Assets.addDevice(i);
                 }
                 devicesDict = null;
 
-                Assets.devices = GUIDict;
                 Assets.refreshList();
             }
         }catch(Exception e)
@@ -104,13 +104,7 @@ internal static class Utilities
     {
         tryDo(() =>
         {
-            Dictionary<string, SmartDeviceInfo> pairs= new Dictionary<string, SmartDeviceInfo>();
-            foreach (var i in Assets.devices)
-            {
-                pairs.Add(i.Key, i.Value.deviceInfo);
-            }
-            string jsonString = JsonSerializer.Serialize(pairs);
-            pairs = null;
+            string jsonString = JsonSerializer.Serialize(Assets.deviceInfosRank, jsonOption);
             writeTextFile(Utilities.DevicesFileName, jsonString);
         });
     }
@@ -151,7 +145,4 @@ internal static class Utilities
         z=quaternion.Z/ sin;
         return (x,y,z);
     }
-
-
-
 }

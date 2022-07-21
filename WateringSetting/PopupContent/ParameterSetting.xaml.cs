@@ -44,14 +44,9 @@ public partial class ParameterSetting : ContentPage
                 {
                     orientation.Stop();
                 }
-                catch
-                {   }
-                try
-                {
-                    orientation.ReadingChanged -= Orientation_ReadingChanged;
-                }
-                catch
-                {     }
+                catch{   }
+                try{  orientation.ReadingChanged -= Orientation_ReadingChanged;     }
+                catch{     }
             };
         }
         else

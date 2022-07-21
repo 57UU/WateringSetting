@@ -1,14 +1,4 @@
-﻿global using WateringSetting.PopupContent;
-
-
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
+﻿using System.Text.Json.Serialization;
 
 namespace WateringSetting;
 
@@ -18,7 +8,7 @@ internal static class Assets
     /// store the connected devices,Tips:invoke refreshList after changes
     /// </summary>
     //public static IList<SmartDeviceInfo> devices = new List<SmartDeviceInfo>();
-    public static LinkedList<string> deviceInfosRank = new();
+    public static LinkedList<SmartDeviceInfo> deviceInfosRank = new();
     public static Dictionary<string,SingleDevice> devices = new();
     public static ThreadStart refreshList;
     public static bool addDevice(in SmartDeviceInfo smartDevice)
@@ -27,7 +17,7 @@ internal static class Assets
             return false;
         var DeviceGUI = new SingleDevice(smartDevice);
         devices.Add(smartDevice.name, DeviceGUI);
-        deviceInfosRank.AddLast(smartDevice.name);
+        deviceInfosRank.AddLast(smartDevice);
         return true;
     }
     public static List<SmartDeviceInfo> beingdeletedDevices=new();
@@ -45,10 +35,13 @@ public class SmartDeviceInfo
     public int port { set; get; }
     public string name { set; get; }
     public DeviceStatus status { set; get; }
-    public float horizonRotation=0;
-    public float verticalRotation=0;
-    public float pressure = 0;
-    public override string ToString()
+    [JsonInclude]
+    public float horizonRotation { set; get; }
+    [JsonInclude]
+    public float verticalRotation { set; get; }
+    [JsonInclude]
+    public float pressure { set; get; }
+public override string ToString()
     {
         return name;
     }

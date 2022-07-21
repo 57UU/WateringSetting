@@ -10,12 +10,6 @@ public partial class ValueSetter : ContentView
 		this.tag = tag;
 		_initvalue = initValue;	
 		this.Loaded += ValueSetter_Loaded;
-		this.Unloaded += ValueSetter_Unloaded;
-	}
-
-	private void ValueSetter_Unloaded(object? sender, EventArgs e)
-	{
-		Utilities.writeDevices();
 	}
 
 	private async void ValueSetter_Loaded(object? sender, EventArgs e)

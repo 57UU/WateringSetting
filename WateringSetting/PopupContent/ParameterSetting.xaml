@@ -16,14 +16,14 @@
 
 
             <HorizontalStackLayout>
-                <Label Text="Use senser to adjust data" x:Name="use_senser"/>
-                <Switch x:Name="isUseSenser" IsToggled="true" Toggled="isUseSenser_Toggled"/>
+                <Label Text="Use sensor to adjust data" x:Name="use_senser"/>
+                <Switch x:Name="isUseSenser" IsToggled="False" Toggled="isUseSenser_Toggled"/>
             </HorizontalStackLayout>
 
             <VerticalStackLayout BindingContext="{Reference isUseSenser}" IsVisible="{Binding IsToggled}">
                 <Button Text="{Static local:Language.press_this_button_to_keep_the_status}"
                                   Clicked="EnhancedButton_Clicked"/>
-                <Label Text="use senser to adjust values"/>
+                <Label Text="use sensor to adjust values"/>
                 <Label x:Name="detail"/>
             </VerticalStackLayout>
 
