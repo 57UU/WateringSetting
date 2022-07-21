@@ -36,7 +36,7 @@ public partial class ParameterSetting : ContentPage
 
         if (orientation.IsSupported)
         {
-            isUseSenser_Toggled(null, new ToggledEventArgs(true));
+            isUseSenser_Toggled(null, new ToggledEventArgs(false));
             this.Unfocused += (sender, e) =>
             {
                 //close reading orientation

@@ -32,6 +32,8 @@ internal static class Utilities
     //Keys
     public static string LanguageKey = "language";
     public static string DevicesFileName = "devices";
+    public static string LogFileName ="logs";//this should be a folder
+
 
     public static void StoreValue(string key,object value)
     {
@@ -52,7 +54,8 @@ internal static class Utilities
         }
         catch (Exception e)
         {
-            popupMessage($"Error:{e.Message}"); 
+            Logger.Error(e.Message);
+            //popupMessage($"Error:{e.Message}"); 
         }
     }
     public static void tryDo(ThreadStart start, in string errorMessage)
@@ -63,6 +66,7 @@ internal static class Utilities
         }
         catch
         {
+            Logger.Error(errorMessage);
             popupMessage(errorMessage);
         }
 

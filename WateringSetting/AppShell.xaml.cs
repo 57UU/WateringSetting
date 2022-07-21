@@ -24,7 +24,7 @@ public partial class AppShell : Shell
             }
                
         }catch
-        {     }
+        { Logger.Info("Current Platform don't support Screen Rotation");  }
        
 
 
